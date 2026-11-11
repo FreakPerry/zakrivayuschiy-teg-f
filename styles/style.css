@@ -1,20 +1,149 @@
-/* Здесь вы напишете основную часть стилей страницы.
-
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ theme-dark — класс тёмной темы
-✦ theme-light — класс светлой темы
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
-
-Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
-
-*/
-
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
+  padding-block: 100px;
+  color: var(--accent-color);
+  font-family: var(--main-font);
+  font-size: 18px;
+  font-variation-settings: 'wght' var(--text-weight);
+  background-color: var(--background);
+  background-image: var(--background-image);
+  background-size: cover;
+  background-attachment: fixed;
+}
+.header, .main {
+  inline-size: var(--content-width);
+  max-inline-size: 100%;
+  margin-inline: auto;
+}
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-block-end: 100px;
+  padding: clamp(120px, 9.3vw, 136px) 12px 25px;
+  border: 2px solid var(--accent-color);
+  background: var(--background);
+  font-family: var(--accent-font);
+  text-transform: uppercase;
+}
+.header__logo {
+  font-size: clamp(42px, 6.4vw, 65px);
+  line-height: 1;
+  text-decoration: none;
+}
+.header__title {
+  margin-block: 20px 25px;
+  font-size: clamp(13px, 1.63vw, 23px);
+  font-weight: 400;
+  text-align: center;
+}
+.theme-menu__list { display: grid; gap: 12px; padding-inline-start: 20px; }
+.theme-menu__button {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-size: 14px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.theme-menu__button:disabled { opacity: .6; cursor: default; }
+.theme-menu__button:disabled::before {
+  content: '▶';
+  position: absolute;
+  inset-inline-start: -20px;
+}
+.main { display: flex; flex-direction: column; gap: 50px; }
+.card { border: 2px solid var(--accent-color); background: var(--background); }
+.card__title {
+  padding: 4px 10px;
+  font-size: 18px;
+  line-height: 1.25;
+  font-variation-settings: 'wght' var(--title-weight);
+  overflow-wrap: anywhere;
+}
+.card__image-wrapper {
+  position: relative;
+  overflow: hidden;
+  border-block: 2px solid var(--accent-color);
+  aspect-ratio: 1;
+}
+.card__image { display: block; inline-size: 100%; block-size: 100%; object-fit: cover; }
+.card__label {
+  position: absolute;
+  inset-block-start: 25px;
+  inset-inline-end: 25px;
+  max-inline-size: calc(100% - 26px);
+  font-family: var(--accent-font);
+  font-size: 14px;
+  text-transform: uppercase;
+  opacity: .5;
+  mix-blend-mode: hard-light;
+  overflow-wrap: anywhere;
+  text-shadow: 1px 0 var(--label-outline), -1px 0 var(--label-outline), 0 1px var(--label-outline), 0 -1px var(--label-outline);
+}
+@supports (-webkit-text-stroke: 1px white) {
+  .card__label { -webkit-text-stroke: 1px var(--label-outline); text-shadow: none; paint-order: stroke fill; }
+}
+.card__content { display: grid; gap: 25px; padding: 25px; line-height: 21px; overflow-wrap: anywhere; }
+.card__actions { display: flex; gap: 4px; justify-content: end; align-items: center; }
+.button {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  min-block-size: 38px;
+  padding: 9px 17px;
+  border: 2px solid var(--accent-color);
+  background: var(--background);
+  font-family: var(--accent-font);
+  font-size: 14px;
+  line-height: .9;
+  cursor: pointer;
+}
+.card__like-button { inline-size: 130px; }
+.card__icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 2px solid transparent;
+  background: transparent;
+  cursor: pointer;
+}
+.like-icon { display: block; overflow: visible; }
+.save-button { align-self: center; max-inline-size: 100%; padding: 15px 19px; }
+.floppy-icon, .dialog__icon { flex-shrink: 0; fill: currentColor; }
+.save-dialog {
+  inline-size: 357px;
+  max-inline-size: calc(100% - 34px);
+  padding: 30px;
+  border: 2px solid var(--accent-color);
+  color: var(--accent-color);
+  background: var(--background);
+  font-family: var(--accent-font);
+}
+.save-dialog[open] { display: grid; grid-template-columns: 39px 1fr; align-items: center; gap: 30px 20px; }
+.save-dialog::backdrop { background: var(--backdrop-color); }
+.dialog__title { font-size: 14px; line-height: 1.5; font-weight: 400; text-transform: uppercase; }
+.dialog__form { grid-column: 1 / -1; }
+.dialog__button { inline-size: 100%; text-transform: uppercase; }
+.card__image_forest { filter: saturate(.8); }
+.card__image_mountains { filter: grayscale(1); }
+.card__image_coast { filter: saturate(2); }
+.card__image_river { filter: hue-rotate(35deg); }
+.card__image_trees { filter: invert(.15); }
+.card__image_sea { filter: sepia(.8); }
+.card__image_path { filter: blur(3px); }
+.card__image_sky { filter: contrast(.8) saturate(1.5) hue-rotate(20deg); }
+@media (width <= 375px) {
+  .header { padding-block-start: 120px; }
+  .header__logo { font-size: clamp(40px, 13.07vw, 49px); }
+  .header__title { font-size: 14px; }
+  .card__label { inset-inline-end: 11px; }
+  .save-button { flex-direction: column; gap: 16px; }
+  .save-button .floppy-icon { inline-size: 28px; block-size: 28px; }
+  .save-dialog { padding-inline: 25px; }
 }

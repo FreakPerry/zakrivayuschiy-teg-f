@@ -1,14 +1,46 @@
-/* Опишите в этом файле все keyframes для проекта и стили анимаций иконки Like.
-
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ theme-dark — класс тёмной темы
-✦ theme-light — класс светлой темы
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
-
-Кроме этого, не меняйте HTML переключателя тем. Его разметка также гарантирует работу своего скрипта.
-*/
+.button { transition: box-shadow .3s ease; isolation: isolate; }
+.button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--accent-color);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .5s ease-in-out;
+}
+.button:hover::before { transform: scaleX(1); }
+.button__text, .button .floppy-icon { color: var(--button-ink); mix-blend-mode: difference; }
+.button:focus { outline: none; box-shadow: 2px 2px 0 var(--accent-color); }
+.header__logo:focus-visible, .theme-menu__button:focus-visible { outline: 2px solid var(--accent-color); outline-offset: 5px; }
+.theme-menu__button { transition: opacity .3s ease; }
+.theme-menu__button:hover { opacity: .6; }
+.theme-menu__button:disabled::before { animation: pointer .5s ease-in-out infinite alternate; }
+.card__icon-button { transition: border-color .3s ease; }
+.card__icon-button:focus { outline: none; }
+.card__icon-button:focus-visible { border-color: var(--accent-color); }
+.like-icon .heart { transform-origin: center; }
+.like-icon .core { fill: transparent; transition: fill .3s linear .03s; }
+.like-icon .main-body { fill: transparent; transition: fill .3s linear; }
+.like-icon .contour { fill: var(--accent-color); transition: fill .1s linear; }
+.like-icon .sparks { fill: var(--heart-color); opacity: 0; transform-origin: center; }
+.card__icon-button:hover .like-icon:not(.is-liked) .core { fill: var(--accent-color); transition-delay: 0s; }
+.card__icon-button:hover .like-icon:not(.is-liked) .main-body { fill: var(--accent-color); transition-delay: .05s; }
+.card__icon-button:active .like-icon:not(.is-liked) .core { fill: var(--heart-color); transition-delay: 0s; }
+.card__icon-button:active .like-icon:not(.is-liked) .main-body { fill: var(--heart-color); transition-delay: .05s; }
+.like-icon.is-liked .core { fill: var(--heart-color); transition-delay: 0s; }
+.like-icon.is-liked .main-body { fill: var(--heart-color); transition-delay: .05s; }
+.like-icon.is-liked .contour { fill: var(--heart-color); transition: fill .3s linear .06s; }
+.like-icon.is-liked .heart { animation: heartbeat .3s ease-in .1s 1; }
+.like-icon.is-liked .sparks { animation: sparks .3s ease-in .3s 1; }
+@keyframes heartbeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.25); } }
+@keyframes sparks { 0%, 100% { opacity: 0; } 50% { opacity: 1; } }
+@keyframes pointer { to { transform: translateX(4px); } }
+@media (prefers-reduced-motion: reduce) {
+  .theme-menu__button:disabled::before,
+  .like-icon.is-liked .heart,
+  .like-icon.is-liked .sparks { animation: none; }
+  .button, .button::before, .theme-menu__button, .card__icon-button,
+  .like-icon .core, .like-icon .main-body, .like-icon .contour,
+  .like-icon.is-liked .contour { transition-duration: 0s; transition-delay: 0s; }
+}
