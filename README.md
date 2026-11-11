@@ -5,6 +5,7 @@ Closing Tag is a single-page learning journal about the stages of studying front
 This educational project follows an assignment and Figma design from **Yandex Practicum**. It demonstrates HTML, CSS, and vanilla JavaScript implementation using the course starter repository.
 
 [View the Figma design](https://www.figma.com/design/UAfJrukDbpbtuxdctdBLJd/4-спринт.-Проектная-работа--Copy-?node-id=0-1)
+
 [Github Pages](https://freakperry.github.io/zakrivayuschiy-teg-f/)
 
 ## Screenshots
