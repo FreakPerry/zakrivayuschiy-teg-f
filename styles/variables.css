@@ -17,7 +17,9 @@
 }
 
 @media (width <= 375px) {
-  :root { --content-width: 100%; }
+  :root {
+    --content-width: 100%;
+  }
 }
 
 :root.theme-dark {
@@ -37,7 +39,7 @@
   :root:not(.theme-light):not(.theme-dark) {
     --background: #000;
     --accent-color: #00cc14;
-  --button-ink: #00cc14;
+    --button-ink: #00cc14;
     --text-weight: 465;
     --title-weight: 785;
     --label-outline: #000;

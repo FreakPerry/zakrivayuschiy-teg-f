@@ -1,6 +1,12 @@
 /* Theme tokens live in variables.css so every custom property has one home. */
-:root { color-scheme: light; }
-:root.theme-dark { color-scheme: dark; }
+:root {
+  color-scheme: light;
+}
+:root.theme-dark {
+  color-scheme: dark;
+}
 @media (prefers-color-scheme: dark) {
-  :root:not(.theme-light):not(.theme-dark) { color-scheme: dark; }
+  :root:not(.theme-light):not(.theme-dark) {
+    color-scheme: dark;
+  }
 }
