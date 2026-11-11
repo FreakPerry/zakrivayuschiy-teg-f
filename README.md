@@ -8,7 +8,7 @@ This educational project follows an assignment and Figma design from **Yandex Pr
 
 ## Screenshots
 
-Captured in local Chrome: desktop at 1440 × 1500 (light theme) and mobile at 375 × 1250 (dark theme).
+Desktop at 1440 × 1500 (light theme) and mobile at 375 × 1250 (dark theme).
 
 | Desktop | Mobile |
 | --- | --- |
